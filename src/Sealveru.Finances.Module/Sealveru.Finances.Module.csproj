@@ -154,6 +154,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\Base\BaseVariables.cs" />
+    <Compile Include="BusinessObjects\Base\KindAccount.cs" />
+    <Compile Include="BusinessObjects\Base\KindCharacter.cs" />
+    <Compile Include="BusinessObjects\Base\IApplicable.cs" />
+    <Compile Include="BusinessObjects\Core\BaseAccount.cs" />
+    <Compile Include="BusinessObjects\Base\Root.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
@@ -171,7 +177,6 @@
     <None Include="FunctionalTests\sample.ets" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessObjects\" />
     <Folder Include="Controllers\" />
     <Folder Include="Images\" />
   </ItemGroup>
