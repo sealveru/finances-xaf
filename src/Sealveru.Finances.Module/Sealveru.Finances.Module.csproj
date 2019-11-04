@@ -158,8 +158,11 @@
     <Compile Include="BusinessObjects\Base\KindAccount.cs" />
     <Compile Include="BusinessObjects\Base\KindCharacter.cs" />
     <Compile Include="BusinessObjects\Base\IApplicable.cs" />
+    <Compile Include="BusinessObjects\Core\Account.cs" />
+    <Compile Include="BusinessObjects\Core\CategoryAccount.cs" />
     <Compile Include="BusinessObjects\Core\BaseAccount.cs" />
     <Compile Include="BusinessObjects\Base\Root.cs" />
+    <Compile Include="BusinessObjects\Core\NegativeAccountException.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
     <Compile Include="Module.cs">
       <SubType>Component</SubType>
