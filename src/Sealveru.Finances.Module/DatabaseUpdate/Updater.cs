@@ -19,6 +19,7 @@ namespace Sealveru.Finances.Module.DatabaseUpdate
 
             var adminRole = CreateAdminRole();
             CreateUser(adminRole);
+            CreateCategoriesAccounts();
 
             ObjectSpace.CommitChanges();
         }
@@ -53,6 +54,29 @@ namespace Sealveru.Finances.Module.DatabaseUpdate
             }
 
             return userAdmin;
+        }
+
+        private void CreateCategoriesAccounts()
+        {
+            CreateCategoryAccount("Asset", KindAccount.Real, KindCharacter.Deudor, 1.ToString());
+            CreateCategoryAccount("Liability", KindAccount.Real, KindCharacter.Acreedor, 2.ToString());
+            CreateCategoryAccount("Capital", KindAccount.Real, KindCharacter.Acreedor, 3.ToString());
+            CreateCategoryAccount("Revenue", KindAccount.Nominal, KindCharacter.Acreedor, 4.ToString());
+            CreateCategoryAccount("Expense", KindAccount.Nominal, KindCharacter.Deudor, 5.ToString());
+        }
+
+        private void CreateCategoryAccount(string name, KindAccount kind, KindCharacter character, string code)
+        {
+            var filter = new BinaryOperator("Name", name);
+            var category = ObjectSpace.FindObject<CategoryAccount>(filter);
+            if (category is null)
+            {
+                category = ObjectSpace.CreateObject<CategoryAccount>();
+                category.Name = name;
+                category.KindAccount = kind;
+                category.Character = character;
+                category.Code = code;
+            }
         }
 
     }

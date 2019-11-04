@@ -89,9 +89,11 @@ namespace Sealveru.Finances.Module
             set => SetPropertyValue(nameof(Parent), ref _parent, value);
         }
 
-        [PersistentAlias("[Total] + IsNull([SubAccounts].Sum([FullTotal]), 0)")]
-        public double FullTotal
-            => Convert.ToDouble(EvaluateAlias(nameof(FullTotal)));
+        [PersistentAlias("[Total] + IsNull([SubAccounts].Sum([Balance]), 0)")]
+        [ModelDefault("DisplayFormat", BaseVariables.FormatDoubleDisplay)]
+        [ModelDefault("EditMask", BaseVariables.FormatDoubleEditMask)]
+        public double Balance
+            => Convert.ToDouble(EvaluateAlias(nameof(Balance)));
 
         [Association, Aggregated]
         public XPCollection<Account> SubAccounts

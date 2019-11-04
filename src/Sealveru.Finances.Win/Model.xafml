@@ -1,7 +1,45 @@
-﻿<Application Logo="ExpressAppLogo">
-	<Options UIType="TabbedMDI" FormStyle="Ribbon" />
-	<NavigationItems NavigationStyle="Accordion" ShowImages="False" DefaultChildItemsDisplayStyle="List"/>
-	<Options ShowTabImage="False">
-		<LayoutManagerOptions EnableLayoutGroupImages="False" />
-	</Options>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Logo="ExpressAppLogo" Company="Sealveru" Title="Sealveru - Finances" PreferredLanguage="(Default language)">
+  <NavigationItems NavigationStyle="NavBar" ShowImages="True" DefaultChildItemsDisplayStyle="List" RootGroupsStyle="Standard">
+    <Items>
+      <Item Id="Default" Caption="Admin">
+        <Items>
+          <Item Id="@7beac079-bf09-4c33-a1de-8fff57657183" Caption="Security" ImageName="Action_Security_ChangePassword" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="MyDetails" ViewId="PermissionPolicyUser_DetailView" ObjectKey="@CurrentUserID" Caption="My Details" ImageName="BO_MyDetails" IsNewNode="True" />
+              <Item Id="PermissionPolicyRole_ListView" ViewId="PermissionPolicyRole_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="PermissionPolicyUser_ListView" ViewId="PermissionPolicyUser_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="MyDetails" Removed="True" />
+          <Item Id="PermissionPolicyRole_ListView" Removed="True" />
+          <Item Id="PermissionPolicyUser_ListView" Removed="True" />
+          <Item Id="Reports" ImageName="BO_Report" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="ReportsV2" ViewId="ReportDataV2_ListView" ObjectKey="" Caption="Reports" Index="0" IsNewNode="True" />
+              <Item Id="Analysis_ListView" ViewId="Analysis_ListView" ObjectKey="" Index="1" IsNewNode="True" />
+              <Item Id="Dashboards" ViewId="DashboardData_ListView" ObjectKey="" Caption="Dashboards" Index="2" IsNewNode="True" />
+              <Item Id="KpiDefinition_ListView" ViewId="KpiDefinition_ListView" ObjectKey="" Caption="KPI Definition" Index="3" IsNewNode="True" />
+              <Item Id="KpiScorecard_ListView" ViewId="KpiScorecard_ListView" ObjectKey="" Caption="KPI Scorecard" Index="4" IsNewNode="True" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="KPI" Removed="True">
+        <Items>
+          <Item Id="KpiDefinition_ListView" Removed="True" />
+          <Item Id="KpiScorecard_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Removed="True" />
+    </Items>
+  </NavigationItems>
+  <Options UIType="TabbedMDI" FormStyle="Ribbon" ShowTabImage="True" Skin="The Bezier" Palette="VS Dark" DataAccessMode="InstantFeedback">
+    <LayoutManagerOptions EnableLayoutGroupImages="True" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="19.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="19.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="19.1.5.0" IsNewNode="True" />
+  </SchemaModules>
 </Application>

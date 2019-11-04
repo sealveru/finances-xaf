@@ -1,8 +1,159 @@
-﻿<?xml version="1.0" ?>
-<Application Title="Sealveru.Finances">
-  <Options>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Sealveru - Finances" PreferredLanguage="(Default language)" Company="Sealveru">
+  <BOModel>
+    <Class Name="Sealveru.Finances.Module.Account" ImageName="Actions_Book" />
+    <Class Name="Sealveru.Finances.Module.CategoryAccount" ImageName="BO_Category" />
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="@a30e86fb-84a4-4de9-9562-9b0b32d135f6" Caption="Accounts" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@700dfe36-26d8-4c6e-ac3f-449682820b66" ViewId="Account_ListView" IsNewNode="True" />
+          <Item Id="@f7696b11-7362-4875-ad14-4bc11b03d673" ViewId="CategoryAccount_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Default">
+        <Items>
+          <Item Id="Root_ListView" Removed="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Options DataAccessMode="InstantFeedback">
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="19.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="19.1.5.0" IsNewNode="True" />
+  </SchemaModules>
   <Views>
+    <DetailView Id="Account_DetailView" AllowDelete="False">
+      <Items>
+        <PropertyEditor Id="Parent" PropertyName="Parent" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="16.034985422740526">
+            <LayoutGroup Id="Account" RelativeSize="100" Caption="Account" Direction="Horizontal">
+              <LayoutGroup Id="Auto7432420f-3b61-4f40-9ae8-44480898cd69" ShowCaption="False" Caption="Auto7432420f-3b61-4f40-9ae8-44480898cd69(4)" Index="0" RelativeSize="49.7037037037037" IsNewNode="True">
+                <LayoutItem Id="Name" ViewItem="Name" Index="0" RelativeSize="29.09090909090909" IsNewNode="True" />
+                <LayoutItem Id="Category" ViewItem="Category" Index="1" RelativeSize="21.818181818181817" IsNewNode="True" />
+                <LayoutItem Id="Parent" ViewItem="Parent" Index="2" RelativeSize="21.818181818181817" IsNewNode="True" />
+                <LayoutItem Id="Code" ViewItem="Code" Index="3" RelativeSize="27.272727272727273" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Auto74fcc9d6-2eef-4e88-98ec-589dc2db3611" ShowCaption="False" Caption="Auto74fcc9d6-2eef-4e88-98ec-589dc2db3611(9)" Index="1" RelativeSize="50.2962962962963" IsNewNode="True">
+                <LayoutItem Id="Total" ViewItem="Total" Index="0" RelativeSize="29.09090909090909" IsNewNode="True" />
+                <LayoutItem Id="Balance" ViewItem="Balance" Index="1" RelativeSize="21.818181818181817" IsNewNode="True" />
+                <LayoutItem Id="Character" ViewItem="Character" Index="2" RelativeSize="21.818181818181817" IsNewNode="True" />
+                <LayoutItem Id="CreatedDate" ViewItem="CreatedDate" Index="3" RelativeSize="27.272727272727273" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="Category" RelativeSize="22.429906542056074" Index="1" Removed="True" />
+              <LayoutItem Id="Balance" RelativeSize="20.610687022900763" Index="4" Removed="True" />
+              <LayoutItem Id="Total" RelativeSize="15.483870967741936" Index="4" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="BaseAccount" RelativeSize="21.428571428571427" Caption="BaseAccount" Direction="Horizontal" Removed="True">
+              <LayoutItem Id="CreatedDate" RelativeSize="100" Index="0" Removed="True" />
+              <LayoutItem Id="Name" RelativeSize="33.333333333333336" Index="0" Removed="True" />
+              <LayoutItem Id="Character" RelativeSize="52.631578947368418" Index="1" Removed="True" />
+              <LayoutItem Id="Code" RelativeSize="25.714285714285715" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Item1" CaptionLocation="Top" Index="1" RelativeSize="83.965014577259481" IsNewNode="True">
+            <LayoutGroup Id="Item2" ShowCaption="True" CaptionLocation="Top" Direction="Vertical" Index="0" Caption="Description" RelativeSize="100" ImageName="BO_Note" IsNewNode="True">
+              <LayoutItem Id="Description" ViewItem="Description" Index="0" RelativeSize="100" ShowCaption="False" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="SubAccounts_Group" ShowCaption="True" Caption="Sub Accounts" Index="1" RelativeSize="100" IsNewNode="True">
+              <LayoutItem Id="SubAccounts" ViewItem="SubAccounts" Index="0" RelativeSize="100" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="SizeableEditors" RelativeSize="36.29737609329446" Caption="Description" Direction="Horizontal" Removed="True">
+            <LayoutItem Id="Description" RelativeSize="100" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SubAccounts_Group" Removed="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Account_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Parent" Index="-1" />
+        <ColumnInfo Id="Total" Index="-1" />
+        <ColumnInfo Id="Code" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Name" Index="1" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="Category" Index="2" />
+        <ColumnInfo Id="Character" Index="3" />
+        <ColumnInfo Id="Balance" Index="4" />
+      </Columns>
+    </ListView>
+    <ListView Id="Account_LookupListView" AllowDelete="False" />
+    <ListView Id="Account_SubAccounts_ListView" AllowDelete="False">
+      <Columns>
+        <ColumnInfo Id="Total" Index="-1" />
+        <ColumnInfo Id="Code" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Name" Index="1" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="Category" Index="2" />
+        <ColumnInfo Id="Character" Index="3" />
+        <ColumnInfo Id="Balance" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="BaseAccount_DetailView" AllowDelete="False" />
+    <ListView Id="BaseAccount_ListView" AllowDelete="False" />
+    <ListView Id="BaseAccount_LookupListView" AllowDelete="False" />
+    <ListView Id="CategoryAccount_Accounts_ListView" AllowDelete="False" />
+    <DetailView Id="CategoryAccount_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="9.037900874635568">
+            <LayoutGroup Id="CategoryAccount" RelativeSize="100" Caption="Kind Account" Direction="Horizontal">
+              <LayoutGroup Id="Auto4fb738da-3090-4ff8-9ba3-0ea96b3c58d6" ShowCaption="False" Caption="Auto4fb738da-3090-4ff8-9ba3-0ea96b3c58d6(4)" Index="0" RelativeSize="49.851632047477743" IsNewNode="True">
+                <LayoutItem Id="Name" ViewItem="Name" Index="0" RelativeSize="51.612903225806448" IsNewNode="True" />
+                <LayoutItem Id="Code" ViewItem="Code" Index="1" RelativeSize="48.387096774193552" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Auto5edaa31d-411d-4ff7-bdfa-41988ede7d8a" ShowCaption="False" Caption="Auto5edaa31d-411d-4ff7-bdfa-41988ede7d8a(7)" Index="1" RelativeSize="50.148367952522257" IsNewNode="True">
+                <LayoutItem Id="Character" ViewItem="Character" Index="0" RelativeSize="51.612903225806448" IsNewNode="True" />
+                <LayoutItem Id="KindAccount" ViewItem="KindAccount" Index="1" RelativeSize="48.387096774193552" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="KindAccount" Index="2" RelativeSize="32.53012048192771" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="BaseAccount" RelativeSize="32.608695652173914" Caption="BaseAccount" Direction="Horizontal" Removed="True">
+              <LayoutItem Id="Character" Index="0" RelativeSize="100" Removed="True" />
+              <LayoutItem Id="CreatedDate" Index="0" RelativeSize="47.368421052631582" Removed="True" />
+              <LayoutItem Id="Name" Index="0" RelativeSize="33.333333333333336" Removed="True" />
+              <LayoutItem Id="Code" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Item1" CaptionLocation="Top" Index="1" RelativeSize="90.962099125364432" IsNewNode="True">
+            <LayoutGroup Id="Item2" ShowCaption="True" CaptionLocation="Top" Direction="Vertical" Index="0" Caption="Description" RelativeSize="100" ImageName="BO_Note" IsNewNode="True">
+              <LayoutItem Id="Description" ViewItem="Description" Index="0" RelativeSize="100" ShowCaption="False" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Accounts_Group" ShowCaption="True" Caption="Accounts" Index="1" RelativeSize="100" IsNewNode="True">
+              <LayoutItem Id="Accounts" ViewItem="Accounts" Index="0" RelativeSize="100" IsNewNode="True" />
+            </LayoutGroup>
+          </TabbedGroup>
+          <LayoutGroup Id="Accounts_Group" Direction="Vertical" RelativeSize="43.586005830903787" Removed="True">
+            <LayoutItem Id="Accounts" RelativeSize="100" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" RelativeSize="47.376093294460638" Caption="Description" Direction="Horizontal" Removed="True">
+            <LayoutItem Id="Description" RelativeSize="100" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CategoryAccount_ListView" AllowDelete="False" AllowNew="False" AllowEdit="False">
+      <Columns>
+        <ColumnInfo Id="Code" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Name" Index="1" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="KindAccount" Index="2" />
+        <ColumnInfo Id="Character" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="CategoryAccount_LookupListView" AllowDelete="False" AllowNew="False" AllowEdit="False">
+      <Columns>
+        <ColumnInfo Id="Code" PropertyName="Code" Index="0" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+        <ColumnInfo Id="Name" Index="1" SortIndex="-1" SortOrder="None" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Root_DetailView" AllowDelete="False" />
+    <ListView Id="Root_ListView" AllowDelete="False" />
+    <ListView Id="Root_LookupListView" AllowDelete="False" />
   </Views>
 </Application>

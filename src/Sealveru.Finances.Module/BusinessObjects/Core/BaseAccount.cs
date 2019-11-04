@@ -39,6 +39,7 @@ namespace Sealveru.Finances.Module
         private DateTime _createdDate;
         [ModelDefault("DisplayFormat", BaseVariables.FormatLongDateDisplay)]
         [ModelDefault("EditMask", BaseVariables.FormatLongDateEditMask)]
+        [ModelDefault("AllowEdit", "False")]
         public DateTime CreatedDate {
             get => _createdDate;
             set => SetPropertyValue<DateTime>(nameof(CreatedDate), ref _createdDate, value);
